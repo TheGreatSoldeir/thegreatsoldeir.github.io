@@ -47,9 +47,55 @@
 		}
     </style>
     <script>
-        document.getElementById("asciibutton").addEventListener("click", {
-            
-        })
+            let treeHeight;
+        while (true) {
+            try {
+                treeHeight = parseInt(prompt("Gib die Höhe des Baums ein\n"));
+                if (treeHeight >= 2) {
+                    break;
+                } else {
+                    console.log("Bitte gib eine Zahl größer gleich 2 ein.");
+                }
+            } catch (error) {
+                console.log("Bitte geben Sie eine gültige Zahl ein.");
+            }
+        }
+
+        let trunkHeight;
+        while (true) {
+            try {
+                trunkHeight = parseInt(prompt("Gib die Höhe des Stamms ein:\n"));
+                if (trunkHeight >= 0) {
+                    break;
+                } else {
+                    console.log("Bitte gib eine positive Zahl ein.");
+                }
+            } catch (error) {
+                console.log("Bitte geben Sie eine gültige Zahl ein.");
+            }
+        }
+
+        function drawChristmasTree(treeHeight, trunkHeight) {
+            for (let i = 0; i < treeHeight; i++) {
+                const spaces = ' '.repeat(treeHeight - i - 1);
+                let stars;
+                if (i === 0) {
+                    stars = '⭐︎'.repeat(2 * i + 1);
+                } else {
+                    stars = '*'.repeat(2 * i + 1);
+                }
+                console.log(spaces + stars);
+            }
+
+            const spaces = ' '.repeat(treeHeight - 2);
+            const trunk = '|||';
+            for (let i = 0; i < trunkHeight; i++) {
+                console.log(spaces + trunk);
+            }
+        }
+
+        drawChristmasTree(treeHeight, trunkHeight);
+
     </script>
     <div class="top">
         <p class="christmas">
