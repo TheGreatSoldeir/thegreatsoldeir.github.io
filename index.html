@@ -47,6 +47,8 @@
 		}
     </style>
     <script>
+        
+        function getInput() {
             let treeHeight;
         while (true) {
             try {
@@ -74,6 +76,8 @@
                 console.log("Bitte geben Sie eine gültige Zahl ein.");
             }
         }
+        }
+        
 
         function drawChristmasTree(treeHeight, trunkHeight) {
             for (let i = 0; i < treeHeight; i++) {
@@ -108,6 +112,13 @@
         Die Seite ist aktuell Work In Progress. <br>
 		irgendwann werden hier super coole Features<br>
 		zu finden sein!!
+    </div>
+    <div id="treeInput" class="epictext">
+        Baumhöhe:
+        <input type="number" id="treeheight">
+        <br><br>
+        Stammhöhe:
+        <input type="number" id="trunkheight">
     </div>
 
 </body>
