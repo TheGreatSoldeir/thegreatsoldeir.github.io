@@ -121,37 +121,13 @@
     <script>
         
         function getInput() {
-            let treeHeight;
-        while (true) {
-            try {
-                treeHeight = parseInt(prompt("Gib die Höhe des Baums ein\n"));
-                if (treeHeight >= 2) {
-                    break;
-                } else {
-                    console.log("Bitte gib eine Zahl größer gleich 2 ein.");
-                }
-            } catch (error) {
-                console.log("Bitte geben Sie eine gültige Zahl ein.");
-            }
-        }
-
-        let trunkHeight;
-        while (true) {
-            try {
-                trunkHeight = parseInt(prompt("Gib die Höhe des Stamms ein:\n"));
-                if (trunkHeight >= 0) {
-                    break;
-                } else {
-                    console.log("Bitte gib eine positive Zahl ein.");
-                }
-            } catch (error) {
-                console.log("Bitte geben Sie eine gültige Zahl ein.");
-            }
-        }
+            const sizeText = document.getElementById("treesize").value;
+            return parseint(sizeText);
         }
         
 
         function drawChristmasTree(treeHeight, trunkHeight) {
+            let lines = []
             for (let i = 0; i < treeHeight; i++) {
                 const spaces = ' '.repeat(treeHeight - i - 1);
                 let stars;
@@ -160,14 +136,21 @@
                 } else {
                     stars = '*'.repeat(2 * i + 1);
                 }
-                console.log(spaces + stars);
+                lines.push(spaces + stars)
             }
 
             const spaces = ' '.repeat(treeHeight - 2);
             const trunk = '|||';
             for (let i = 0; i < trunkHeight; i++) {
-                console.log(spaces + trunk);
+                lines.push(spaces + trunk);
             }
+            return lines;
+        }
+
+        function pushTree() {
+            const size = getInput();
+            const lines = drawChristmasTree(size, Math.round(size/2));
+            // TODO: output lines into div and add button listener
         }
 
         drawChristmasTree(treeHeight, trunkHeight);
@@ -187,10 +170,7 @@
     </div>
     <div id="treeInput" class="epictext">
         Baumhöhe:
-        <input type="number" id="treeheight">
-        <br><br>
-        Stammhöhe:
-        <input type="number" id="trunkheight">
+        <input type="number" id="treesize">
         <br><br>
         <button class="button-19">Weihnachtsbaum generieren :)</button>
     </div>
