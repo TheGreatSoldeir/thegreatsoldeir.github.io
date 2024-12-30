@@ -151,7 +151,7 @@
             
             let trunkWidth = (treeHeight*2-1)/3;
             if (trunkWidth % 2 == 0) {
-                trunkWidth++;
+                trunkWidth++;  // No even numbers allowed >:[.
             }
             const trunk = '|'.repeat(trunkWidth);
             const spaces = ' '.repeat(treeHeight-trunkWidth/2);
