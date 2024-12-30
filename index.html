@@ -125,9 +125,16 @@
     <script>
         function getInput() {
             const sizeText = document.getElementById("treesize").value;
-            return parseInt(sizeText);
+            const i = parseInt(sizeText);
+            if (i <= 1) {
+                return null;
+            }
+            return i
         }
         
+        function outputError() {
+            document.getElementById("treeOutput").innerHTML = "Schlechter input. Gib eine Zahl x ein, bei der gilt: x ∈ \u2115 \u2227 x > 1"
+        }
 
         function drawChristmasTree(treeHeight, trunkHeight) {
             let lines = []
@@ -152,6 +159,10 @@
 
         function pushTree() {
             const size = getInput();
+            if(size == null) {
+                outputError()
+                return
+            }
             const lines = drawChristmasTree(size, Math.round(size/2));
             obj = document.getElementById("treeOutput");
             obj.innerHTML = ""
