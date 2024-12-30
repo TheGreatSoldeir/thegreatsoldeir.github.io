@@ -136,7 +136,7 @@
             document.getElementById("treeOutput").innerHTML = "Schlechter input. Gib eine Zahl x ein, bei der gilt: x ∈ \u2115 \u2227 x > 1"
         }
 
-        function drawChristmasTree(treeHeight, trunkHeight) {
+        function drawChristmasTree(treeHeight) {
             let lines = []
             for (let i = 0; i < treeHeight; i++) {
                 const spaces = ' '.repeat(treeHeight - i - 1);
@@ -148,9 +148,15 @@
                 }
                 lines.push(spaces + stars)
             }
-
-            const spaces = ' '.repeat(treeHeight - 2);
-            const trunk = '|||';
+            
+            let trunkWidth = (treeHeight*2-1)/3;
+            if (trunkWidth % 2 == 0) {
+                trunkWidth++;
+            }
+            const trunk = '|'.repeat(trunkWidth);
+            const spaces = ' '.repeat(treeHeight-trunkWidth/2);
+            const trunkHeight = treeHeight/4;
+            
             for (let i = 0; i < trunkHeight; i++) {
                 lines.push(spaces + trunk);
             }
