@@ -150,6 +150,7 @@
             const size = getInput();
             const lines = drawChristmasTree(size, Math.round(size/2));
             obj = document.getElementById("treeOutput");
+            obj.innerHTML = ""
             for (const line of lines) {
                 obj.innerHTML += line + "<br>";
             }
