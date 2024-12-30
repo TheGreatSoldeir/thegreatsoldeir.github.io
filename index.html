@@ -119,10 +119,9 @@
         }
     </style>
     <script>
-        
         function getInput() {
             const sizeText = document.getElementById("treesize").value;
-            return parseint(sizeText);
+            return parseInt(sizeText);
         }
         
 
@@ -150,11 +149,17 @@
         function pushTree() {
             const size = getInput();
             const lines = drawChristmasTree(size, Math.round(size/2));
-            // TODO: output lines into div and add button listener
+            obj = document.getElementById("treeOutput");
+            for (const line of lines) {
+                obj.innerHTML += line + "<br>";
+            }
         }
-
-        drawChristmasTree(treeHeight, trunkHeight);
-
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("theButton").onclick = function() {
+                pushTree()
+            }   
+        })
+        
     </script>
     <div class="top">
         <p class="christmas">
@@ -168,11 +173,14 @@
 		irgendwann werden hier super coole Features<br>
 		zu finden sein!!
     </div>
+    <div id="treeOutput">
+
+    </div>
     <div id="treeInput" class="epictext">
         Baumhöhe:
         <input type="number" id="treesize">
         <br><br>
-        <button class="button-19">Weihnachtsbaum generieren :)</button>
+        <button class="button-19" id="theButton">Weihnachtsbaum generieren :)</button>
     </div>
 
 </body>
