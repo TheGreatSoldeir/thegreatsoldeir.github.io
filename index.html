@@ -162,9 +162,13 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("theButton").onclick = function() {
                 pushTree()
-            }   
-        })
-        
+            };
+            document.getElementById("treesize").addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    pushTree();
+                }
+            });
+        });
     </script>
     <div class="top">
         <p class="christmas">
@@ -179,7 +183,6 @@
 		zu finden sein!!
     </div>
     <div id="treeOutput" class="treetext">
-        
 
     </div>
     <div id="treeInput" class="epictext">
