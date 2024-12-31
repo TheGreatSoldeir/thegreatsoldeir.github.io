@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎄Frohe Weihnachten🎄</title>
-</head>
-<body>
     <style>
         @font-face {
             font-family: Doto;
@@ -15,8 +13,6 @@
             background-color: darkred;
             padding: 0px;
             margin: 0px;
-
-
         }
         .christmas {
             margin-top: 0px;
@@ -27,37 +23,34 @@
             font-weight: bold;
         }
         .top {
-            margin: 0; /* Removes any margin */
-            position: sticky; /* Makes it stick to the top when scrolling */
-            top: 0; /* Sticks to the top of the viewport */
-            height: 33vh; /* Takes up 1/3 of the viewport height */
-            width: 100%; /* Ensures it spans the full width of the viewport */
-            background-color: red; /* Sets the background color */
-            display: flex; /* Optional: Makes it easier to align text/content inside */
-            align-items: center; /* Vertically centers content */
-            justify-content: center; /* Horizontally centers content */
-            color: white; /* Makes text more readable */
-            font-size: 1.5rem; /* Adjust text size */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
-        }
-        .footer {
-            
+            margin: 0; 
+            position: sticky;
+            top: 0; 
+            height: 33vh; 
+            width: 100%; 
+            background-color: red; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
         }
         * {
             margin-top: 0;
             margin-bottom: 0;
-            text-align: center
+            text-align: center;
         }
         .treetext {
             color: white;
-            font-family: 'Lucida Console', 'Lucida Console'
+            font-family: 'Lucida Console', 'Lucida Console';
         }
-		.epictext {
+        .epictext {
             color: white;
             font-family: 'Lucida Console', 'Lucida Console', cursive;
             margin-top: 1%;
-            margin-bottom: 1%
-		}
+            margin-bottom: 1%;
+        }
         .button-19 {
             appearance: button;
             background-color: #1899D6;
@@ -121,7 +114,81 @@
             border-width: 4px 0 0;
             background: none;
         }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 25%;
+            height: auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border: 2px solid red;
+        }
+
+        .ok-button1, .ok-button2, .no-button {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0);  /* Semi-transparent background */
+            padding: 5px;
+            cursor: pointer;
+            pointer-events: auto;  /* Make them interactive */
+            text-align: center;  /* Center text inside the buttons */
+            line-height: 1.5;  /* Improve button text alignment */
+            transition: all 0.3s ease;  /* Smooth transition when resizing */
+        }
+
+        .ok-button1 {
+            top: 72%;  /* 69% from the top of the image */
+            left: 7%;  /* 7% from the left of the image */
+            width: 6vw;  /* 5.5% of the viewport width (responsive) */
+            height: min(max(1vw, 0.1em), 5vh);  /* Height shrinks on small screens and grows on large ones */
+        }
+
+        .ok-button2 {
+            top:72%;  /* 69% from the top of the image */
+            left: 38%;  /* 38% from the left of the image */
+            width: 6vw;  /* 5.5% of the viewport width (responsive) */
+            height: min(max(1vw, 0.1em), 5vh);  /* Height shrinks on small screens and grows on large ones */
+        }
+
+        .no-button {
+            top: 72%;  /* 69% from the top of the image */
+            left: 69%;  /* 69% from the left of the image */
+            width: 6vw;  /* 5.1% of the viewport width (responsive) */
+            height: min(max(1vw, 0.1em), 5vh);  /* Height shrinks on small screens and grows on large ones */
+        }
     </style>
+</head>
+<body>
+    <div class="top">
+        <p class="christmas">
+            Frohe  <br>
+            🎄 Weihnachten 🎄<br>
+        </p>
+    </div>
+    <div class="epictext">
+        Die Seite ist aktuell Work In Progress. <br>
+        Irgendwann werden hier super coole Features<br>
+        zu finden sein!!
+    </div>
+    <div id="treeOutput" class="treetext"></div>
+
+    <div id="treeInput" class="epictext">
+        Baumhöhe:
+        <input type="number" id="treesize">
+        <br><br>
+        <button class="button-19" id="theButton">Weihnachtsbaum generieren :)</button>
+    </div>
+
+    <div class="image-container">
+        <img src="images/the_cat.jpg" alt="The cat">
+        <div class="clickable-area ok-button1" onclick="openImageWindow()"></div>
+        <div class="clickable-area ok-button2" onclick="openImageWindow()"></div>
+        <div class="clickable-area no-button" onclick="handleNoClick()"></div>
+    </div>
+
     <script>
         function getInput() {
             const sizeText = document.getElementById("treesize").value;
@@ -129,15 +196,15 @@
             if (i <= 1) {
                 return null;
             }
-            return i
+            return i;
         }
-        
+
         function outputError() {
-            document.getElementById("treeOutput").innerHTML = "Schlechter input. Gib eine Zahl x ein, bei der gilt: x ∈ \u2115 \u2227 x > 1"
+            document.getElementById("treeOutput").innerHTML = "Schlechter input. Gib eine Zahl x ein, bei der gilt: x ∈ \u2115 \u2227 x > 1";
         }
 
         function drawChristmasTree(treeHeight) {
-            let lines = []
+            let lines = [];
             for (let i = 0; i < treeHeight; i++) {
                 const spaces = ' '.repeat(treeHeight - i - 1);
                 let stars;
@@ -146,17 +213,17 @@
                 } else {
                     stars = '*'.repeat(2 * i + 1);
                 }
-                lines.push(spaces + stars)
+                lines.push(spaces + stars);
             }
-            
+
             let trunkWidth = (treeHeight*2-1)/3;
             if (trunkWidth % 2 == 0) {
-                trunkWidth++;  // No even numbers allowed >:[.
+                trunkWidth++; 
             }
             const trunk = '|'.repeat(trunkWidth);
             const spaces = ' '.repeat(treeHeight-trunkWidth/2);
             const trunkHeight = treeHeight/4;
-            
+
             for (let i = 0; i < trunkHeight; i++) {
                 lines.push(spaces + trunk);
             }
@@ -166,19 +233,20 @@
         function pushTree() {
             const size = getInput();
             if(size == null) {
-                outputError()
-                return
+                outputError();
+                return;
             }
-            const lines = drawChristmasTree(size, Math.round(size/2));
+            const lines = drawChristmasTree(size);
             obj = document.getElementById("treeOutput");
-            obj.innerHTML = ""
+            obj.innerHTML = "";
             for (const line of lines) {
                 obj.innerHTML += line + "<br>";
             }
         }
+
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("theButton").onclick = function() {
-                pushTree()
+                pushTree();
             };
             document.getElementById("treesize").addEventListener("keydown", function(event) {
                 if (event.key === "Enter") {
@@ -186,27 +254,18 @@
                 }
             });
         });
-    </script>
-    <div class="top">
-        <p class="christmas">
-            Frohe  <br>
-            🎄 Weihnachten 🎄<br>
-            
-        </p>
-    </div>
-    <div class="epictext">
-        Die Seite ist aktuell Work In Progress. <br>
-		irgendwann werden hier super coole Features<br>
-		zu finden sein!!
-    </div>
-    <div id="treeOutput" class="treetext">
 
-    </div>
-    <div id="treeInput" class="epictext">
-        Baumhöhe:
-        <input type="number" id="treesize">
-        <br><br>
-        <button class="button-19" id="theButton">Weihnachtsbaum generieren :)</button>
-    </div>
+        function openImageWindow() {
+            // Open a new window and display the image
+            var imageWindow = window.open("", "ImageWindow", "width=600,height=400");
+
+            // Set the content of the new window
+            imageWindow.document.body.innerHTML = '<img src="images/the_cat.png" alt="The Cat" style="width:100%;height:auto;">';
+        }
+
+        function handleNoClick() {
+            alert("🦋 This action will have consequences.");
+        }
+    </script>
 </body>
 </html>
