@@ -199,8 +199,13 @@
         }
 
         function outputError() {
-            document.getElementById("treeOutput").innerHTML = "Schlechter input. Gib eine Zahl x ein, bei der gilt: x ∈ \u2115 \u2227 x > 1";
-        }
+    document.getElementById("treeOutput").innerHTML = 
+        "Schlechter input. Gib eine Zahl x ein, bei der für die Fourier'sche Transformation gilt:<br>" +
+        "ℱ (χ ₍₁,∞₎ ) ( ξ ) = <br>" +
+        "    ( e⁻² π i ξ - 1) / <br>" +
+        "    ( 2 π i ξ ),   ξ ≠ 0";
+    }
+
 
         function drawChristmasTree(treeHeight) {
             let lines = [];
